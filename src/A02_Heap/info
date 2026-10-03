@@ -1,0 +1,3 @@
+- Es gibt Min Heap (kleinstes Element oben) und Max Heap (größtes Element oben)
+- Wofür Heap gebraucht wird: PriorityQueue, HeapSort, Scheduler, Dijkstra
+

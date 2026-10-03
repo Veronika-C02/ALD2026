@@ -1,6 +1,6 @@
 package A02_Heap;
 
-import java.util.ArrayList;public class TaskHeapArrayList {
+import java.util.ArrayList; public class TaskHeapArrayList {
 
 	/**
 	 * Internes Task-Array für den Heap
@@ -23,6 +23,8 @@ import java.util.ArrayList;public class TaskHeapArrayList {
 	 */
 	public void insert(Task t) {
 		// TODO: Your implementation
+		tasks.add(t); //einfügen
+		swim(tasks.size()-1); //hochsteigen lassen
 
 	}
 
@@ -33,6 +35,13 @@ import java.util.ArrayList;public class TaskHeapArrayList {
 	 */
 	public Task remove() {
 		// TODO: Your implementation
+
+		if(tasks.size() <= 1) return null; // muss min. 2 sein, sonst leer
+		Task min = tasks.get(1); // merke mir stelle 1
+
+
+
+
 		return null;
 	}
 
@@ -47,7 +56,7 @@ import java.util.ArrayList;public class TaskHeapArrayList {
 
 	private int parent(int pos) {
 		return pos / 2;
-	}
+	} // ganzzahlige division bspw. parent von 5 ist 5/2 =2,5 also 2
 
 	private int left(int pos) {
 		return pos * 2;
