@@ -18,7 +18,6 @@ import java.util.ArrayList; public class TaskHeapArrayList {
 
 	/**
 	 * Neuen Task in den Heap einfügen
-	 *
 	 * @param t Einzufügender Task
 	 */
 	public void insert(Task t) {
@@ -35,23 +34,41 @@ import java.util.ArrayList; public class TaskHeapArrayList {
 	 */
 	public Task remove() {
 		// TODO: Your implementation
-
 		if(tasks.size() <= 1) return null; // muss min. 2 sein, sonst leer
+
 		Task min = tasks.get(1); // merke mir stelle 1
 
+		tasks.set(1,tasks.get(tasks.size()-1)); // setzte letztes element an stelle 1 -> überschreibe stelle 1nur das ist beim Heap relevant
+		tasks.remove(tasks.size()-1); // kürze die Länge des Arrays um 1
 
+		if(tasks.size() > 1 )sink(1); // das erste Element sinken lassen,damit die Reihenfolge wieder stimmt
 
-
-		return null;
+		return min; //gemerktes oberstes Element zurückgeben
 	}
 
 	private void swim(int pos) {
 		// let the first swim if > test if it hasChildren;
 		// TODO: Your implementation
+
+		while (pos > 1){ //solange nicht ganz oben
+			// vergleiche und tausche ggf. aus
+
+
+
+
+
+		}
+
+
+
 	}
 
 	private void sink(int pos) {
 		// TODO: Your implementation
+
+
+
+
 	}
 
 	private int parent(int pos) {

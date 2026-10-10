@@ -46,7 +46,7 @@ public abstract class FindWay {
 	protected ArrayList<Integer> createWay(int from, int to) {
 		ArrayList<Integer> way = new ArrayList<Integer>();
 
-		// TODO: IHRE IMPLEMENTIERUNG
+		//TODO: IHRE IMPLEMENTIERUNG
 
 		return way;
 	}
