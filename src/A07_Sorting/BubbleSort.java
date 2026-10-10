@@ -14,7 +14,6 @@ public class BubbleSort implements PersonenSort {
 		for (int i = 0; i < numPersonen; i++) {
 
 			// Innere Schleife: Nachbarn vergleichen
-			// -1-i weil hinten schon sortiert ist
 			for (int j = 0; j < numPersonen - 1; j++) {
 
 				// Linker groesser als rechter? Dann falsch herum
