@@ -1,8 +1,5 @@
 package A01_Stack;
 
-
-import com.sun.source.tree.ClassTree;
-
 public class Stack<T>
 {
 
@@ -48,5 +45,6 @@ public class Stack<T>
     public Node<T> getFirst() {
         return first;
     }
+
 
 }

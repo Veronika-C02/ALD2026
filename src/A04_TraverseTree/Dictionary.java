@@ -1,5 +1,6 @@
 package A04_TraverseTree;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -20,8 +21,17 @@ public class Dictionary {
 	 * @return Zahl der Wörter (=Anzahl der Elemente)
 	 */
 	public int countWordsInSubTree(Word w) {
-		
-		return 0;
+		// Abbruchbedingung --->  ein leerer teilbaum enthält keine Wörter
+		if (w == null) {
+			return 0;
+		}
+		//übergebenes Wort
+		int anzahl = 1;
+
+		anzahl = anzahl + countWordsInSubTree(w.getLeft()); // alle Wörter im linken Teilbaum
+		anzahl = anzahl + countWordsInSubTree(w.getRight()); //alle Wörter im rechten Teilbaum
+
+		return anzahl;
 	}
 
 	/**
@@ -30,10 +40,33 @@ public class Dictionary {
 	 * @return Menge aller zutreffenden Wörter
 	 */
 	public Set<String> getWordsWithPrefix(String prefix) {
-		
-		return null;
+		//Treffer sammeln
+		Set<String> ergebnis = new HashSet<>();
+
+		sammleMitPraefix(root, prefix, ergebnis);
+		return ergebnis;
 	}
-	
+
+	//Hilfsmethode: durchläuft den Baum und füllt das Set
+	private void sammleMitPraefix(Word current, String prefix, Set<String> ergebnis) {
+		// Abbruchbedingung: nichts mehr da zum Durchsuchen
+		if (current == null) {
+			return;}
+
+		String wort = current.getWort(); // wort des aktuellen Knotens holen
+
+		// Prüfen, ob dieses Wort mit dem Präfix beginnt
+		if (wort.startsWith(prefix)) {
+			ergebnis.add(wort);   // treffer
+		}
+
+		//linken Teilbaum suchen
+		sammleMitPraefix(current.getLeft(), prefix, ergebnis);
+
+			// rechten Teilbaum suchen
+		sammleMitPraefix(current.getRight(), prefix, ergebnis);
+	}
+
 
 	/**
 	 * Neues Wort hinzufügen

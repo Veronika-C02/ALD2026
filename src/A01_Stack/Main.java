@@ -1,36 +1,30 @@
 package A01_Stack;
 
-import java.util.Random;
-
 public class Main {
 
-    public static void main(String[] args) {
+        public static void main(String[] args) throws Exception {
+            for (int n : new int[]{10_000, 100_000}) {
+                Stack<Integer> stack = new Stack<>();
 
-        // Einfügen bei einem Stack
-        Stack<Integer> stack = new Stack<>();
-        int n = 100000; // größe des stacks
+                long t0 = System.nanoTime();
+                for (int i = 0; i < n; i++) stack.push(i);
+                long push = System.nanoTime() - t0;
 
-        long start = System.nanoTime(); // start der zeitmessung
-        for (int i = 0; i < n; i++) {
-            int zufall = (int) (Math.random() * 100000);
-            stack.push(zufall);
-        }
-        long ende = System.nanoTime(); // ende der zeitmessung
+                t0 = System.nanoTime();
+                int anzahl = stack.getCount();                     // Anzahl vorher merken
+                for (int k = 0; k < anzahl; k++) {
+                    Integer wert = stack.pop();
+                    if (wert == -1) break;                         // -1 gibt es nicht = Worst Case
+                }
+                long suche = System.nanoTime() - t0;
 
-        System.out.println("Gesamtzeit Stack: " + ((ende - start) / n) + " ns");
-
-
-        // "suchen" in einem stack
-        int gesucht = 5;
-
-        Node<Integer> current = stack.getFirst();
-        while (current != null) {
-            if (current.getData() == gesucht) {
-                System.out.println("gefunden!");
-                break;
+                System.out.println("n=" + n
+                        + " | push gesamt=" + push + " ns"
+                        + " (" + push / n + " ns pro push -> O(1))"
+                        + " | suche=" + suche + " ns -> O(n)");
             }
-            current = current.getNext();
+
+
         }
 
-    }
 }
