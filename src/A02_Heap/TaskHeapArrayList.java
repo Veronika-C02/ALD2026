@@ -47,16 +47,18 @@ import java.util.ArrayList; public class TaskHeapArrayList {
 	}
 
 	private void swim(int pos) {
-		// let the first swim if > test if it hasChildren;
+
 		// TODO: Your implementation
-
-		while (pos > 1){ //solange nicht ganz oben
-			// vergleiche und tausche ggf. aus
-
-
-
-
-
+		// solange nicht ganz oben angekommen
+		while (pos > 1) {
+			int parentPos = parent(pos);
+			// wenn ich wichtiger bin als mein Parent -> tauschen
+			if (prio(pos) < prio(parentPos)) {
+				exchange(pos, parentPos);
+				pos = parentPos; // weiter nach oben
+			} else {
+				break; // passt schon, fertig
+			}
 		}
 
 
@@ -66,6 +68,18 @@ import java.util.ArrayList; public class TaskHeapArrayList {
 	private void sink(int pos) {
 		// TODO: Your implementation
 
+		// solange noch Kinder da sind
+		while (hasChildren(pos)) {
+			int smallestChildPos = minChild(pos);
+
+			// wenn Kind wichtiger ist als ich -> tauschen
+			if (prio(pos) > prio(smallestChildPos)) {
+				exchange(pos, smallestChildPos);
+				pos = smallestChildPos; // weiter nach unten
+			} else {
+				break; // passt schon, fertig
+			}
+		}
 
 
 

@@ -1,9 +1,13 @@
 package A01_Stack;
 
 
+import com.sun.source.tree.ClassTree;
+
 public class Stack<T>
 {
-	 private Node<T> first;
+
+    private Node<T> first;
+     private int count;
 
     /**
      * Oberstes Element entfernen und zurückliefern.
@@ -11,7 +15,15 @@ public class Stack<T>
      * @throws StackEmptyException 
      */
     public T pop() throws StackEmptyException {
-        return null;
+        if (first == null) {
+            StackEmptyException StackEmptyException = new StackEmptyException();
+            throw StackEmptyException;
+        }
+
+        Node<T> current = first;
+        first = first.getNext();
+        count--;
+        return current.getData();
     }
     
     /**
@@ -19,7 +31,10 @@ public class Stack<T>
      * @param i data
      */
     public void push(T i) {
-
+        Node<T> current = new Node<>(i);
+        current.setNext(first);
+        first = current;
+        count++;
     }
     
     /**
@@ -27,6 +42,11 @@ public class Stack<T>
      * @return
      */
     public int getCount() {
-    	return 0;
+    	return count;
     }
+
+    public Node<T> getFirst() {
+        return first;
+    }
+
 }

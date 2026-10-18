@@ -1,6 +1,7 @@
 package A05_Breitensuche;
 
-import java.util.List;
+import java.util.*;
+
 
 public class Breitensuche extends BaseTree<Integer> {
 
@@ -15,8 +16,22 @@ public class Breitensuche extends BaseTree<Integer> {
 	 * @return Liste der Knoten in Breitenfolge
 	 */
 	public List<Integer> getBreadthFirstOrder(Node<Integer> start) {
+		List<Integer> result = new ArrayList<>();
+		if (start == null) return result; // nichts zu tun wenn leer
 
-		return null;
+		// Schlange für alles was noch dran ist
+		Queue<Node<Integer>> queue = new LinkedList<>();
+		queue.add(start); // mit start anfangen
+
+		while (!queue.isEmpty()) { // solange noch was da ist
+			Node<Integer> current = queue.poll(); // vordersten holen
+			result.add(current.getValue()); // Wert merken
+
+			// Kinder hinten anstellen, links zuerst
+			if (current.getLeft() != null) queue.add(current.getLeft());
+			if (current.getRight() != null) queue.add(current.getRight());
+		}
+		return result;
 	}
 
 	/**
@@ -28,7 +43,15 @@ public class Breitensuche extends BaseTree<Integer> {
 	 */
 	public List<Integer> getBreadthFirstOrderForLevel(Node<Integer> start, int level) {
 
-		return null;
+		if (start == null || level < 1)
+			return Collections.emptyList();
+		if (level == 1)
+			return List.of(start.getValue());
+		List<Integer> nodesAtLevel = new ArrayList<>();
+		nodesAtLevel.addAll(getBreadthFirstOrderForLevel(start.getLeft(), level - 1));
+		nodesAtLevel.addAll(getBreadthFirstOrderForLevel(start.getRight(), level - 1));
+		return nodesAtLevel;
+
 	}
 
 }

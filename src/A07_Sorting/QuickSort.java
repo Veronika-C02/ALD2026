@@ -7,8 +7,6 @@ public class QuickSort implements PersonenSort {
 	 * Sortier-Funktion
 	 */
 	public void sort(Person[] personen) {
-		 // REKURSION --> Abbruchbedingung
-
 		sort(personen, 0, personen.length - 1);
 	}
 

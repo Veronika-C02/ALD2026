@@ -23,6 +23,8 @@ public class PersonenSortTest {
 		personen[6] = new Person("Max", "Planck");
 		personen[7] = new Person("Edwin", "Hubble");
 		personen[8] = new Person("Richard", "Feynman");
+
+		ps = new QuickSort();
 	}
 	
 	@Test
